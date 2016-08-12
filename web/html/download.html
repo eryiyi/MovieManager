@@ -1,0 +1,325 @@
+<!DOCTYPE HTML>
+<html lang="zh_CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="../js/jquery_latest.js"></script>
+	<script src="../js/glide.min.js"></script>
+	<link rel="stylesheet" href="../css/glide.core.min.css">
+	<link rel="stylesheet" href="../css/glide.theme.min.css">
+	<link rel="stylesheet" href="../css/reset.css">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="../img/detail-icon.png">
+	<meta charset="UTF-8">
+	<title>	</title>
+	<style>
+
+		/*header*/
+		.header{
+			z-index: 10;
+			text-align: center;
+			height: 50px;
+			line-height: 50px;
+			font-size: 25px;
+			color: #fff;
+			background-color: #FF9400;
+			text-shadow:0 2px 4px rgba(0,0,0,0.2);
+			background: url(/img/head_bg.jpg);
+			box-shadow:0 3px 2px rgba(0, 0, 0,.6);
+		}
+		/*FOOTER*/
+		.footer h4{
+			margin-top: 1rem;
+		}
+		.sign a{
+			background-color: #ddd;
+			text-align: center;
+			display: block;
+			line-height: 200%;
+			font-size: .9rem;
+			color: #666;
+			font-weight: bold;
+			text-shadow: 0 1px 1px #fff;
+			transition: all .3s;
+		}
+		.sign a:hover{
+			color: #17A05E;
+			transition: all .3s;
+		}
+		/*SCREEN*/
+		@media screen and (min-width: 768px) {
+			body{
+				min-width:1200px;
+			}
+
+			/*banner*/
+			.banner{
+				width: 100%;
+				border-bottom: 1px solid rgba(0,0,0,0.2);
+			}
+			.banner-left{
+				width: 70%;
+				float: left;
+				display: block;
+			}
+			.banner-right{
+				width: 30%;
+				float: left;
+				background-color: #fff;
+
+			}
+			.download{
+				text-align: center;
+				margin: 10% 0 10px 40px;
+				width: 50%;
+			}
+			.download a img{
+				margin-left: 20px;
+				height: 40px;
+				float: left;
+				display:block;
+			}
+			.download span{
+				margin-left: 15px;
+				float: left;
+				display: block;
+				height: 40px;
+				line-height: 40px;
+				font-size: 20px;
+			}
+			.qr{
+				width: 100%;
+				border: 1px solid #FF9400;
+			}
+			.qr:hover{
+				outline: 1px solid #FF9400;
+			}
+
+			/*-- a --*/
+			.download a{
+				padding: 5px 0;
+				margin-top: 15px;
+				color: #fff;
+				display: block;
+				border-radius: 5px;
+			}
+			.android:visited, .android:link{
+				background-color: #72B860;
+			}
+			.android:hover{
+				background-color: #46A03A;
+
+			}
+
+			.apple:visited, .apple:link{
+				background-color: #F5982E;
+			}
+			.apple:hover{
+				background-color: #F6870F;
+			}
+
+			/*content*/
+
+			.content-detail{
+				width: 75%;
+				margin: 60px auto;
+				margin-bottom: 100px;
+			}
+
+			.delimiter{
+				width:100%;
+				border-bottom:1px solid #FF9400;
+				text-align:left;
+				margin-bottom:30px;
+				margin-top: 40px;
+			}
+			.delimiter>h1{
+				display: block;
+				width:80px;
+				text-align:center;
+				padding:0 10px;
+				background-color:#FF9400;
+				font:18px/30px 'Microsoft Yahei';
+				color:white;
+			}
+			.content p{
+				text-indent: 2em;
+				padding: 0 20px;
+				font-size: 16px;
+				line-height: 28px;
+			}
+
+			.img-holder{
+
+			}
+			.img-holder img{
+				width: 35%;
+				float: left;
+				display: block;
+				margin: 3rem 10%;
+			}
+			.img-holder img:last-child{
+				margin-left: 0;
+			}
+			.hide-screen{display: none;}
+
+
+
+		}
+		/*PHONE*/
+		@media screen and (max-width:768px) {
+
+			.banner-left{
+				display: block;
+				border-bottom: 1px solid #ccc;
+				width: 100%;
+			}
+			.banner-right{
+				width: 50%;
+				margin: 0 auto;
+			}
+			.banner-right .qr{
+				margin-top: 2rem;
+				margin-bottom: 2rem;
+				width: 100%;
+				display: block;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				border: 1px solid #FF9400;
+				-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, .2);
+				box-shadow: 1px 1px 3px rgba(0, 0, 0, .2);
+			}
+			.banner-right a{
+				display: block;
+				color: #fff;
+				font-size: 1.3rem;
+				text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+				border-radius: 10px;
+				margin-top: 1rem;
+			}
+			.banner-right a>span{
+				height: 3rem;
+				line-height: 3rem;
+				text-align: center;
+				display: block;
+			}
+
+			.bg-green{background-color: #7BC942; }
+			.bg-orange{background-color: #FE941E; }
+
+			.banner-right a:active{
+				transform: translateY(1px);
+			}
+			.glide{
+				display: block;
+				width: 85%;
+				margin: 2rem auto;
+				-webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, .3);
+				box-shadow: 1px 1px 10px rgba(0, 0, 0, .3);
+			}
+			.glide__slide{
+				display: block;
+			}
+			.hide-phone{display: none; }
+		}
+
+	</style>
+</head>
+<body>
+<!-- header -->
+	<div class="header">
+		花木通
+	</div>
+<!-- banner -->
+	<div class="banner clearfix">
+		<img class="banner-left hide-phone" src="/img/banner_screen.jpg" alt="">
+		<img class="banner-left hide-screen" src="/img/banner_phone.jpg" alt="">
+		<div class="banner-right">
+			<div class="download">
+				<img class="qr" src="/img/erweima.png" alt="">
+				<a class="bg-green android clearfix" href="http://xhmt.sdhmmm.cn:7777/html/huamutong.apk"><img class="hide-phone" src="/img/android.png" alt=""><span>安卓下载</span></a>
+				<a class="bg-orange apple clearfix" href="javaScript:void(0)" onclick="appleClick()"><img class="hide-phone" src="/img/apple.png" alt=""><span>苹果下载</span></a>
+			</div>
+		</div>
+	</div>
+
+<!-- content -->
+	<div class="content">
+		<div class="content-detail hide-phone">
+			<div class="delimiter">
+				<h1>实时资讯</h1>
+			</div>
+			<div class="img-holder clearfix">
+				<img src="/img/screen_one.png">
+				<img src="/img/screen_three.png">
+			</div>
+			<p>了解最新的市场苗木信息，全国最大的苗木市场供需信息平台。
+</p>
+			<div class="delimiter">
+				<h1>服务全面</h1>
+			</div>
+			<div class="img-holder clearfix">
+				<img src="/img/screen_two.png">
+				<img src="/img/screen_seven.png">
+			</div>
+			<p>最全的苗木服务平台，一站式解决您的所有问题。</p>
+			<div class="delimiter">
+				<h1>附近商家/收藏</h1>
+			</div>
+			<div class="img-holder clearfix">
+				<img src="/img/screen_six.png">
+				<img src="/img/screen_five.png">
+			</div>
+			<p>一网掌握所有商家信息，苗木购物无障碍；随时收藏关键信息，为您的事业保驾护航。</p>
+		</div>
+			<div id="Glide" class="glide hide-screen">
+		<!-- 	    <div class="glide__arrows">
+			        <button class="glide__arrow prev" data-glide-dir="<">prev</button>
+			        <button class="glide__arrow next" data-glide-dir=">">next</button>
+			    </div> -->
+			    <div class="glide__wrapper">
+			        <ul class="glide__track">
+			            <li class="glide__slide"><img src="/img/screen_one.png" alt=""></li>
+			            <li class="glide__slide"><img src="/img/screen_two.png" alt=""></li>
+			            <li class="glide__slide"><img src="/img/screen_three.png" alt=""></li>
+			            <li class="glide__slide"><img src="/img/screen_four.png" alt=""></li>
+			            <li class="glide__slide"><img src="/img/screen_five.png" alt=""></li>
+			            <li class="glide__slide"><img src="/img/screen_six.png" alt=""></li>
+			        </ul>
+			    </div>
+
+			    <div class="glide__bullets"></div>
+
+			</div>
+			<script>
+				$(function(){
+					$('.glide').glide({
+						mode:'horizontal',     // 幻灯片走向
+						autoplay:5000,         // 自动播放，false为关闭自动播放
+						startAt:2,             // 开始于哪个幻灯片
+						// paddings:'1rem',       // 幻灯片左右的padding 可以是单位，%
+						centered:true,         // 当前幻灯片在slides的中间
+						hoverpause:true,       // 鼠标悬停的时候暂停播放
+						autoheight:false,      // 设置包裹的slider为当前幻灯片的高度
+						keyboard:true,         // 光标方向键使幻灯片左右滑动
+						touchDistance:80,      // 最小手指滑动距离，以触发滑动操作
+						dragDistance:120,      // 最小鼠标拖动距离，以触发滑动操作
+						animationDuration:400 // 动画时间 ms
+
+					});
+				})
+			</script>
+	</div>
+	<div class="footer">
+		<h4 class="sign"><a>山东省滨州市惠民苗木协会 版权所有 2016-2022</a></h4>
+	</div>
+	
+</body>
+<script>
+
+	function appleClick(){
+		alert("苹果版暂未发布，请搜索微信“惠民花木通”，获取最新花木信息！");
+	}
+</script>
+</html>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.EmpDao">
+    <resultMap id="emp" type="com.liangxunwang.unimanager.model.Emp">
+        <id column="mm_emp_id" property="mm_emp_id"/>
+        <result column="mm_emp_mobile" property="mm_emp_mobile"/>
+        <result column="mm_emp_nickname" property="mm_emp_nickname"/>
+        <result column="mm_emp_card" property="mm_emp_card"/>
+        <result column="mm_emp_cover" property="mm_emp_cover"/>
+        <result column="mm_emp_password" property="mm_emp_password"/>
+        <result column="mm_emp_type" property="mm_emp_type"/>
+        <result column="mm_emp_regtime" property="mm_emp_regtime"/>
+        <result column="is_login" property="is_login"/>
+        <result column="is_fabu" property="is_fabu"/>
+        <result column="is_use" property="is_use"/>
+        <result column="ischeck" property="ischeck"/>
+    </resultMap>
+
+
+    <select id="listMemberByName" resultMap="emp">
+        SELECT sn.* from mm_emp sn
+        WHERE 1=1
+        <if test="mm_emp_type != null and mm_emp_type != ''">
+        AND sn.mm_emp_type = #{mm_emp_type}
+        </if>
+        <if test="ischeck != null and ischeck != ''">
+        AND sn.ischeck = #{ischeck}
+        </if>
+        ORDER BY sn.mm_emp_regtime DESC limit #{index},#{size}
+    </select>
+
+    <select id="count" resultType="Long">
+        SELECT count(sn.mm_emp_id) FROM mm_emp sn
+        WHERE 1=1
+        <if test="mm_emp_type != null and mm_emp_type != ''">
+            AND sn.mm_emp_type = #{mm_emp_type}
+        </if>
+        <if test="ischeck != null and ischeck != ''">
+            AND sn.ischeck = #{ischeck}
+        </if>
+    </select>
+
+
+    <update id="update" parameterType="com.liangxunwang.unimanager.model.Emp">
+        UPDATE mm_emp SET mm_emp_nickname=#{mm_emp_nickname},
+        mm_emp_mobile=#{mm_emp_mobile},
+        mm_emp_card=#{mm_emp_card},
+        mm_emp_type=#{mm_emp_type},
+        mm_emp_regtime=#{mm_emp_regtime},
+        is_login=#{is_login},
+        is_fabu=#{is_fabu},
+        is_use=#{is_use},
+        ischeck=#{ischeck}
+        WHERE mm_emp_id=#{mm_emp_id}
+    </update>
+
+    <select id="findById" resultMap="emp" parameterType="String">
+         SELECT sn.* from mm_emp sn
+        WHERE sn.mm_emp_id=#{mm_emp_id}
+    </select>
+
+
+    <select id="findByMobile" parameterType="String" resultMap="emp">
+        SELECT sn.* from mm_emp sn
+        WHERE sn.mm_emp_mobile=#{mm_emp_mobile}
+    </select>
+
+    <insert id="save" parameterType="com.liangxunwang.unimanager.model.Emp">
+        INSERT INTO mm_emp(mm_emp_cover,mm_emp_id, mm_emp_mobile, mm_emp_nickname, mm_emp_password, mm_emp_type,  mm_emp_regtime, is_login, is_fabu,is_use,  ischeck)
+        VALUES (#{mm_emp_cover,jdbcType=VARCHAR},#{mm_emp_id}, #{mm_emp_mobile},#{mm_emp_nickname}, #{mm_emp_password},#{mm_emp_type},#{mm_emp_regtime},#{is_login},#{is_fabu},#{is_use},#{ischeck})
+    </insert>
+
+    <update id="updateLoacation" parameterType="com.liangxunwang.unimanager.model.Emp">
+        UPDATE mm_emp SET
+        WHERE mm_emp_id=#{mm_emp_id}
+    </update>
+
+    <update id="updatePwr" parameterType="com.liangxunwang.unimanager.model.Emp">
+        UPDATE mm_emp SET
+        mm_emp_password=#{mm_emp_password}
+        WHERE mm_emp_mobile=#{mm_emp_mobile}
+    </update>
+
+    <update id="updateCover" parameterType="com.liangxunwang.unimanager.model.Emp">
+        UPDATE mm_emp SET
+        mm_emp_cover=#{mm_emp_cover}
+        WHERE mm_emp_mobile=#{mm_emp_mobile}
+    </update>
+
+    <select id="listsLocation" resultMap="emp">
+        SELECT sn.* from mm_emp sn
+        WHERE 1=1 AND  sn.mm_emp_type = '0'
+    </select>
+
+    <select id="findByMobileAndCard" resultMap="emp">
+        SELECT sn.* from mm_emp sn
+        WHERE 1=1
+        <if test="mm_emp_mobile != null and mm_emp_mobile != ''">
+            AND sn.mm_emp_mobile = #{mm_emp_mobile}
+        </if>
+    </select>
+
+</mapper>

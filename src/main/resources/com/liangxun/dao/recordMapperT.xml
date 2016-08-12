@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.RecordTDao">
+    <resultMap id="record_t" type="com.liangxunwang.unimanager.model.RecordT">
+        <id column="mm_msg_id" property="mm_msg_id"/>
+        <result column="mm_emp_id" property="mm_emp_id"/>
+        <result column="mm_msg_type" property="mm_msg_type"/>
+        <result column="mm_msg_title" property="mm_msg_title"/>
+        <result column="mm_msg_content" property="mm_msg_content"/>
+        <result column="mm_msg_picurl" property="mm_msg_picurl"/>
+        <result column="dateline" property="dateline"/>
+        <result column="is_del" property="is_del"/>
+        <result column="is_top" property="is_top"/>
+        <result column="top_num" property="top_num"/>
+        <result column="provinceid" property="provinceid"/>
+        <result column="cityid" property="cityid"/>
+        <result column="countryid" property="countryid"/>
+        <result column="mm_msg_video" property="mm_msg_video"/>
+    </resultMap>
+    <resultMap id="record_vo_t" type="com.liangxunwang.unimanager.mvc.vo.RecordVOT">
+        <id column="mm_msg_id" property="mm_msg_id"/>
+        <result column="mm_emp_id" property="mm_emp_id"/>
+        <result column="mm_msg_type" property="mm_msg_type"/>
+        <result column="mm_msg_title" property="mm_msg_title"/>
+        <result column="mm_msg_content" property="mm_msg_content"/>
+        <result column="mm_msg_picurl" property="mm_msg_picurl"/>
+        <result column="dateline" property="dateline"/>
+        <result column="is_del" property="is_del"/>
+        <result column="is_top" property="is_top"/>
+        <result column="top_num" property="top_num"/>
+        <result column="provinceid" property="provinceid"/>
+        <result column="cityid" property="cityid"/>
+        <result column="countryid" property="countryid"/>
+        <result column="area" property="area"/>
+        <result column="cityName" property="cityName"/>
+        <result column="mm_emp_mobile" property="mm_emp_mobile"/>
+        <result column="mm_emp_nickname" property="mm_emp_nickname"/>
+        <result column="mm_emp_type" property="mm_emp_type"/>
+        <result column="mm_emp_cover" property="mm_emp_cover"/>
+        <result column="mm_emp_company_type" property="mm_emp_company_type"/>
+        <result column="mm_emp_company" property="mm_emp_company"/>
+        <result column="mm_level_id" property="mm_level_id"/>
+        <result column="is_chengxin" property="is_chengxin"/>
+        <result column="is_miaomu" property="is_miaomu"/>
+
+        <result column="lat" property="lat"/>
+        <result column="lng" property="lng"/>
+        <result column="mm_msg_video" property="mm_msg_video"/>
+    </resultMap>
+
+    <select id="listRecordVo" resultMap="record_vo_t">
+        SELECT m.*,
+        (SELECT mm_level_num FROM mm_level ll WHERE m.mm_level_id = ll.mm_level_id ) as mm_level_num
+        FROM (
+        SELECT sn.* ,larea.area as area,lcity.city as cityName,lemp.mm_emp_mobile as mm_emp_mobile, lemp.mm_emp_nickname as mm_emp_nickname, lemp.mm_emp_type as mm_emp_type,lemp.mm_emp_cover as mm_emp_cover, lemp.mm_emp_company_type as mm_emp_company_type
+        , lemp.mm_emp_company as mm_emp_company, lemp.mm_level_id as mm_level_id, lemp.is_chengxin as is_chengxin , lemp.is_miaomu as is_miaomu, lemp.lat_company as lat, lemp.lng_company as lng  from mm_msg_t sn
+        LEFT JOIN mm_emp lemp ON sn.mm_emp_id=lemp.mm_emp_id
+        LEFT JOIN hat_area larea ON sn.countryid=larea.areaID
+        LEFT JOIN hat_city lcity ON sn.cityid=lcity.cityid
+        WHERE 1=1 AND sn.is_del = 0
+        <if test="mm_msg_type != null and mm_msg_type != ''">
+            AND sn.mm_msg_type = #{mm_msg_type}
+        </if>
+
+        <if test="is_guanzhu == '0'">
+
+            <if test="provinceid != null and provinceid != ''">
+                AND sn.provinceid = #{provinceid}
+            </if>
+            <if test="cityid != null and cityid != ''">
+                AND sn.cityid = #{cityid}
+            </if>
+
+        </if>
+
+        <if test="countryid != null and countryid != ''" >
+            AND sn.countryid = #{countryid}
+        </if>
+
+        <if test="mm_emp_id != null and mm_emp_id != ''">
+            AND sn.mm_emp_id = #{mm_emp_id}
+        </if>
+        <if test="keyword != null and keyword != ''">
+            AND  (sn.mm_msg_content like CONCAT('%',#{keyword},'%') OR  lemp.mm_emp_mobile like CONCAT('%',#{keyword},'%') OR lemp.mm_emp_nickname like CONCAT('%',#{keyword},'%') OR  lemp.mm_emp_company like CONCAT('%',#{keyword},'%'))
+        </if>
+
+        <if test="start != null and start != ''">
+            AND sn.dateline &gt;= #{start}
+        </if>
+        <if test="end != null and end != ''">
+            AND sn.dateline &lt;= #{end}
+        </if>
+
+        ) m
+        ORDER  BY  m.top_num DESC ,m.dateline DESC  limit #{index},#{size}
+    </select>
+
+    <select id="count" resultType="Long">
+        SELECT count(sn.mm_msg_id) FROM mm_msg_t sn
+        LEFT JOIN mm_emp lemp ON sn.mm_emp_id=lemp.mm_emp_id
+        WHERE 1=1 AND sn.is_del = 0
+        <if test="mm_msg_type != null and mm_msg_type != ''">
+            AND sn.mm_msg_type = #{mm_msg_type}
+        </if>
+
+        <if test="is_guanzhu == '0'">
+
+            <if test="provinceid != null and provinceid != ''">
+                AND sn.provinceid = #{provinceid}
+            </if>
+            <if test="cityid != null and cityid != ''">
+                AND sn.cityid = #{cityid}
+            </if>
+
+        </if>
+
+        <if test="countryid != null and countryid != ''" >
+            AND sn.countryid = #{countryid}
+        </if>
+        <if test="mm_emp_id != null and mm_emp_id != ''">
+            AND sn.mm_emp_id = #{mm_emp_id}
+        </if>
+        <if test="keyword != null and keyword != ''">
+            AND  (sn.mm_msg_content like CONCAT('%',#{keyword},'%') OR  lemp.mm_emp_mobile like CONCAT('%',#{keyword},'%') OR lemp.mm_emp_nickname like CONCAT('%',#{keyword},'%') OR  lemp.mm_emp_company like CONCAT('%',#{keyword},'%'))
+        </if>
+
+        <if test="start != null and start != ''">
+            AND sn.dateline &gt;= #{start}
+        </if>
+        <if test="end != null and end != ''">
+            AND sn.dateline &lt;= #{end}
+        </if>
+
+    </select>
+
+    <insert id="save" parameterType="com.liangxunwang.unimanager.model.RecordT">
+        INSERT INTO mm_msg_t( mm_msg_id, mm_emp_id, mm_msg_type, mm_msg_title, mm_msg_content, mm_msg_picurl, dateline,is_del, is_top, top_num, provinceid, cityid, countryid, mm_msg_video)
+        VALUES ( #{mm_msg_id}, #{mm_emp_id}, #{mm_msg_type}, #{mm_msg_title, jdbcType=VARCHAR}, #{mm_msg_content, jdbcType=VARCHAR}, #{mm_msg_picurl, jdbcType=VARCHAR}, #{dateline}, #{is_del}, #{is_top}, #{top_num}, #{provinceid}, #{cityid}, #{countryid}, #{mm_msg_video, jdbcType=VARCHAR})
+    </insert>
+
+    <select id="findById" resultMap="record_vo_t" parameterType="String">
+        SELECT m.*,
+        (SELECT mm_level_num FROM mm_level ll WHERE m.mm_level_id = ll.mm_level_id ) as mm_level_num
+        FROM (
+        SELECT sn.* ,larea.area as area,lemp.mm_emp_mobile as mm_emp_mobile, lemp.mm_emp_nickname as mm_emp_nickname, lemp.mm_emp_type as mm_emp_type,lemp.mm_emp_cover as mm_emp_cover, lemp.mm_emp_company_type as mm_emp_company_type
+        , lemp.mm_emp_company as mm_emp_company, lemp.mm_level_id as mm_level_id, lemp.is_chengxin as is_chengxin , lemp.is_miaomu as is_miaomu,lemp.lat_company as lat, lemp.lng_company as lng  from mm_msg_t sn
+        LEFT JOIN mm_emp lemp ON sn.mm_emp_id=lemp.mm_emp_id
+        LEFT JOIN hat_area larea ON sn.countryid=larea.areaID
+        WHERE sn.mm_msg_id = #{id}
+        ) m
+    </select>
+
+    <update id="deleteById" parameterType="String">
+        UPDATE mm_msg_t SET is_del=1 WHERE mm_msg_id=#{mm_msg_id}
+    </update>
+
+    <update id="updateTop" parameterType="String">
+        UPDATE mm_msg_t SET is_top = #{is_top}, top_num = #{top_num}, mm_msg_type = #{mm_msg_type}, mm_msg_content = #{mm_msg_content}  WHERE mm_msg_id=#{mm_msg_id}
+    </update>
+
+    <select id="listRecordVoTop" resultMap="record_vo_t">
+        SELECT m.*,
+        (SELECT mm_level_num FROM mm_level ll WHERE m.mm_level_id = ll.mm_level_id ) as mm_level_num
+        FROM (
+        SELECT sn.* ,larea.area as area,lcity.city as cityName,lemp.mm_emp_mobile as mm_emp_mobile, lemp.mm_emp_nickname as mm_emp_nickname, lemp.mm_emp_type as mm_emp_type,lemp.mm_emp_cover as mm_emp_cover, lemp.mm_emp_company_type as mm_emp_company_type
+        , lemp.mm_emp_company as mm_emp_company, lemp.mm_level_id as mm_level_id, lemp.is_chengxin as is_chengxin , lemp.is_miaomu as is_miaomu  from mm_msg_t sn
+        LEFT JOIN mm_emp lemp ON sn.mm_emp_id=lemp.mm_emp_id
+        LEFT JOIN hat_area larea ON sn.countryid=larea.areaID
+        LEFT JOIN hat_city lcity ON sn.cityid=lcity.cityid
+        WHERE sn.is_del = 0 AND sn.is_top = 1
+        ) m
+        ORDER  BY  m.top_num DESC  limit #{index},#{size}
+    </select>
+
+    <select id="countbyEmpId" resultType="Long">
+        SELECT count(sn.mm_msg_id) FROM mm_msg_t sn
+        LEFT JOIN mm_emp lemp ON sn.mm_emp_id=lemp.mm_emp_id
+        WHERE 1=1 AND sn.is_del = 0
+        <if test="mm_emp_id != null and mm_emp_id != ''">
+            AND sn.mm_emp_id = #{mm_emp_id}
+        </if>
+        <if test="start != null and start != ''">
+            AND sn.dateline &gt;= #{start}
+        </if>
+        <if test="end != null and end != ''">
+            AND sn.dateline &lt;= #{end}
+        </if>
+    </select>
+
+
+
+    <select id="listRecordVoManager" resultMap="record_vo_t">
+        SELECT m.*,
+        (SELECT mm_level_num FROM mm_level ll WHERE m.mm_level_id = ll.mm_level_id ) as mm_level_num
+        FROM (
+        SELECT sn.* ,larea.area as area,lcity.city as cityName,lemp.mm_emp_mobile as mm_emp_mobile, lemp.mm_emp_nickname as mm_emp_nickname, lemp.mm_emp_type as mm_emp_type,lemp.mm_emp_cover as mm_emp_cover, lemp.mm_emp_company_type as mm_emp_company_type
+        , lemp.mm_emp_company as mm_emp_company, lemp.mm_level_id as mm_level_id, lemp.is_chengxin as is_chengxin , lemp.is_miaomu as is_miaomu  from mm_msg_t sn
+        LEFT JOIN mm_emp lemp ON sn.mm_emp_id=lemp.mm_emp_id
+        LEFT JOIN hat_area larea ON sn.countryid=larea.areaID
+        LEFT JOIN hat_city lcity ON sn.cityid=lcity.cityid
+        WHERE 1=1 AND sn.is_del = 0
+        <if test="mm_msg_type != null and mm_msg_type != ''">
+            AND sn.mm_msg_type = #{mm_msg_type}
+        </if>
+
+        <if test="provinceid != null and provinceid != ''">
+            AND sn.provinceid = #{provinceid}
+        </if>
+        <if test="cityid != null and cityid != ''">
+            AND sn.cityid = #{cityid}
+        </if>
+
+        <if test="countryid != null and countryid != ''" >
+            AND sn.countryid = #{countryid}
+        </if>
+
+        <if test="keyword != null and keyword != ''">
+            AND  (sn.mm_msg_content like CONCAT('%',#{keyword},'%') OR  lemp.mm_emp_mobile like CONCAT('%',#{keyword},'%') OR lemp.mm_emp_nickname like CONCAT('%',#{keyword},'%') OR  lemp.mm_emp_company like CONCAT('%',#{keyword},'%'))
+        </if>
+        ) m
+        ORDER  BY  m.top_num DESC ,m.dateline DESC  limit #{index},#{size}
+    </select>
+
+    <select id="countManager" resultType="Long">
+        SELECT count(sn.mm_msg_id) FROM mm_msg_t sn
+        LEFT JOIN mm_emp lemp ON sn.mm_emp_id=lemp.mm_emp_id
+        WHERE 1=1 AND sn.is_del = 0
+        <if test="mm_msg_type != null and mm_msg_type != ''">
+            AND sn.mm_msg_type = #{mm_msg_type}
+        </if>
+
+        <if test="provinceid != null and provinceid != ''">
+            AND sn.provinceid = #{provinceid}
+        </if>
+        <if test="cityid != null and cityid != ''">
+            AND sn.cityid = #{cityid}
+        </if>
+
+        <if test="countryid != null and countryid != ''" >
+            AND sn.countryid = #{countryid}
+        </if>
+
+        <if test="keyword != null and keyword != ''">
+            AND  (sn.mm_msg_content like CONCAT('%',#{keyword},'%') OR  lemp.mm_emp_mobile like CONCAT('%',#{keyword},'%') OR lemp.mm_emp_nickname like CONCAT('%',#{keyword},'%') OR  lemp.mm_emp_company like CONCAT('%',#{keyword},'%'))
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.AdDao">
+    <resultMap id="adObj" type="com.liangxunwang.unimanager.model.AdObj">
+        <id column="mm_ad_id" property="mm_ad_id"/>
+        <result column="mm_ad_url" property="mm_ad_url"/>
+        <result column="mm_ad_pic" property="mm_ad_pic"/>
+        <result column="mm_ad_type" property="mm_ad_type"/>
+        <result column="mm_ad_num" property="mm_ad_num"/>
+    </resultMap>
+
+    <select id="lists" resultMap="adObj">
+        SELECT * from mm_ad ORDER BY mm_ad_num asc
+    </select>
+
+    <insert id="save" parameterType="com.liangxunwang.unimanager.model.AdObj">
+        INSERT INTO mm_ad(mm_ad_id, mm_ad_url, mm_ad_pic, mm_ad_type, mm_ad_num)
+        VALUES (#{mm_ad_id}, #{mm_ad_url}, #{mm_ad_pic}, #{mm_ad_type}, #{mm_ad_num,jdbcType=VARCHAR})
+    </insert>
+
+
+    <delete id="delete" parameterType="String">
+        DELETE FROM mm_ad where mm_ad_id = #{mm_ad_id}
+    </delete>
+
+    <select id="findById" parameterType="String" resultMap="adObj">
+        SELECT * FROM mm_ad where mm_ad_id=#{mm_ad_id}
+    </select>
+
+    <update id="update" parameterType="com.liangxunwang.unimanager.model.AdObj">
+        UPDATE mm_ad SET mm_ad_url=#{mm_ad_url}, mm_ad_pic=#{mm_ad_pic} , mm_ad_num=#{mm_ad_num,jdbcType=VARCHAR} WHERE mm_ad_id=#{mm_ad_id}
+    </update>
+</mapper>

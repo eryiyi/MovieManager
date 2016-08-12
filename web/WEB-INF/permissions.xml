@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permissions id="ALL" name="所有权限">
+    <group id="ROLE_MANAGE" name="角色管理">
+        <permission id="LIST_ROLE" name="角色列表"/>
+        <permission id="ADD_ROLE" name="添加角色"/>
+    </group>
+    <group id="MANAGER_MANAGE" name="管理员">
+        <permission id="MANAGER_ADD_MANAGE" name="管理员列表"/>
+        <permission id="MANAGER_LIST_MANAGE" name="管理员列表"/>
+    </group>
+    <group id="EMPLOYEE_MANAGE" name="会员管理">
+        <permission id="REG_EMP" name="人工注册"/>
+        <permission id="LIST_EMPLOYEE_JY" name="普通用户"/>
+        <permission id="LIST_EMPLOYEE_EMP" name="会员"/>
+    </group>
+    <group id="MESSAGE_MANAGE" name="信息管理">
+        <permission id="QIUGOU_MSG" name="信息"/>
+    </group>
+    <group id="NOTICE_MANAGE" name="公告管理">
+        <permission id="ADD_NOTICE" name="添加公告"/>
+        <permission id="NOTICE_LIST" name="公告列表"/>
+    </group>
+    <group id="REPORT_MANAGE" name="举报管理">
+        <permission id="REPORT_LIST" name="举报列表"/>
+    </group>
+    <group id="FEIYONG_MANAGE" name="会费管理">
+        <permission id="ADD_FEIYONG" name="会费添加"/>
+        <permission id="FEIYONG_LIST" name="会费列表"/>
+    </group>
+    <group id="ORDER_MANAGE" name="订单管理">
+        <permission id="ORDER_LIST" name="订单列表"/>
+    </group>
+    <group id="ABOUT_US_MANAGE" name="关于我们">
+        <permission id="ABOUT_US_MANA" name="关于我们"/>
+    </group>
+    <group id="SUGGEST_MANAGE" name="意见反馈">
+        <permission id="SUGGEST_MANAGE" name="意见反馈"/>
+    </group>
+    <group id="TEL_MANAGE" name="客服QQ">
+        <permission id="ADD_TEL_KEFU_MANAGE" name="添加QQ"/>
+        <permission id="TEL_KEFU_MANAGE" name="QQ列表"/>
+    </group>
+    <group id="AD_MANAGE" name="广告管理">
+        <permission id="ADD_AD_MANAGE" name="添加广告"/>
+        <permission id="AD_LISTMANAGE" name="广告列表"/>
+    </group>
+</permissions>

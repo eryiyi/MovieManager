@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.OrderDao">
+    <resultMap id="order" type="com.liangxunwang.unimanager.model.OrderObj">
+        <id column="mm_order_id" property="mm_order_id"/>
+        <result column="mm_emp_id" property="mm_emp_id"/>
+        <result column="mm_order_jine" property="mm_order_jine"/>
+        <result column="is_jiaofei" property="is_jiaofei"/>
+        <result column="dateline" property="dateline"/>
+    </resultMap>
+
+    <resultMap id="order_vo" type="com.liangxunwang.unimanager.mvc.vo.OrderVO">
+        <id column="mm_order_id" property="mm_order_id"/>
+        <result column="mm_emp_id" property="mm_emp_id"/>
+        <result column="mm_order_jine" property="mm_order_jine"/>
+        <result column="is_jiaofei" property="is_jiaofei"/>
+        <result column="dateline" property="dateline"/>
+        <result column="mm_emp_nickname" property="mm_emp_nickname"/>
+    </resultMap>
+
+
+    <select id="lists" resultMap="order_vo">
+        SELECT sn.* ,lemp.mm_emp_nickname as mm_emp_nickname from mm_order sn
+        LEFT JOIN mm_emp lemp ON sn.mm_emp_id=lemp.mm_emp_id
+        WHERE 1=1
+        <if test="is_jiaofei != null and is_jiaofei != ''">
+        AND sn.is_jiaofei = #{is_jiaofei}
+        </if>
+
+        ORDER BY sn.dateline DESC limit #{index},#{size}
+    </select>
+
+    <select id="count" resultType="Long">
+        SELECT count(sn.mm_order_id) FROM mm_order sn
+        WHERE 1=1
+        <if test="is_jiaofei != null and is_jiaofei != ''">
+            AND sn.is_jiaofei = #{is_jiaofei}
+        </if>
+
+    </select>
+
+
+</mapper>

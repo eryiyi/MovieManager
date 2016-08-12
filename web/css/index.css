@@ -1,0 +1,298 @@
+body {
+  background-color: #ececec;
+}
+.content {
+  width: 95%;
+}
+.item {
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+.item a:link,
+.item a:visited {
+  color: #333;
+}
+.item .item-content {
+  display: block;
+  box-sizing: border-box;
+  padding: 10px;
+  line-height: 140%;
+  border-bottom: 1px solid #ECECEC;
+}
+.item .item-footer {
+  padding: 5px;
+}
+.item .item-footer .read-status-unread {
+  float: left;
+  width: 60px;
+  height: 70px;
+  margin-left: 10px;
+  background: url("/img/tree_icons_read_0.png") no-repeat center center;
+  background-size: 60px;
+}
+.item .item-footer .read-status-readed {
+  float: left;
+  width: 60px;
+  height: 70px;
+  margin-left: 10px;
+  background: url("/img/tree_icons_read_1.png") no-repeat center center;
+  background-size: 60px;
+}
+.item .item-footer .button-pic {
+  float: right;
+  height: 70px;
+  width: 50px;
+  margin: 0 5px;
+  background: url("/img/tree_button_pic.png") no-repeat center center;
+  background-size: 50px;
+}
+.item .item-footer .button-pic:active {
+  background-size: 50px;
+}
+.item .item-footer .button-phone {
+  float: right;
+  height: 70px;
+  width: 50px;
+  margin: 0 5px;
+  background: url("/img/tree_button_call.png") no-repeat center center;
+  background-size: 50px;
+}
+.item .item-footer .button-phone:active {
+  background: url("/img/tree_button_call_p.png") no-repeat center center;
+  background-size: 50px;
+}
+.item .item-footer .button-share {
+  float: right;
+  height: 70px;
+  width: 50px;
+  margin: 0 5px;
+  background: url("/img/tree_button_share.png") no-repeat center center;
+  background-size: 50px;
+}
+.item .item-footer .button-share:active {
+  background: url("/img/tree_button_share_p.png") no-repeat center center;
+  background-size: 50px;
+}
+.item .item-footer .button-report {
+  float: right;
+  height: 70px;
+  width: 50px;
+  margin: 0 5px;
+  background: url("/img/tree_button_report.png") no-repeat center center;
+  background-size: 50px;
+}
+.item .item-footer .button-report:active {
+  background: url("/img/tree_button_report_p.png") no-repeat center center;
+  background-size: 50px;
+}
+.item .item-footer .button-fav {
+  float: right;
+  height: 70px;
+  width: 50px;
+  margin: 0 5px;
+  background: url("/img/tree_button_fav.png") no-repeat center center;
+  background-size: 50px;
+}
+.item .item-footer .button-fav:active {
+  background: url("/img/tree_button_fav_p.png") no-repeat center center;
+  background-size: 50px;
+}
+.item .button-phone-big {
+  display: block;
+  width: 60%;
+  max-width: 200px;
+  margin: 20px auto;
+}
+.item .button-phone-big .phone-number {
+  font-size: 1.3rem;
+}
+.item .img-holder {
+  width: 95%;
+  margin: 20px auto;
+}
+.item .img-holder a {
+  margin-top: 5px;
+  float: left;
+  display: block;
+  width: 33.33%;
+}
+.item .img-holder a img {
+  display: block;
+  width: 95%;
+}
+.item-heading {
+  border-bottom: 1px solid #ECECEC;
+  padding: 5px;
+  height: 50px;
+}
+.item-heading .left {
+  float: left;
+  max-width: 80%;
+}
+.item-heading .left .head-pic {
+  float: left;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+}
+.item-heading .left .detail {
+  float: left;
+  margin: 5px 10px;
+}
+.item-heading .left .detail .company {
+  line-height: 20px;
+  height: 20px;
+  font-size: .9rem;
+}
+.item-heading .left .detail .time {
+  line-height: 20px;
+  height: 20px;
+  font-size: .9rem;
+}
+.item-heading .right {
+  float: right;
+  margin-right: 5px;
+}
+.item-heading .right .top img {
+  float: right;
+  display: block;
+  height: 35px;
+}
+.item-heading .right .botton {
+  margin-top: 5px;
+}
+.item-heading .right .botton img {
+  display: block;
+  float: right;
+  height: 10px;
+}
+.warning {
+  display: block;
+  color: #555555;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 200%;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  margin-bottom: 13px;
+}
+.warning:hover,
+.warning:active {
+  color: #0AC86C;
+  text-shadow: 1px 1px 3px #fff;
+}
+.page-num .page-nav > a {
+  color: #272822;
+  text-shadow: 1px 1px 1px #fff;
+}
+.page-num .page-nav > a > :link,
+.page-num .page-nav > a:visited {
+  color: #272822;
+}
+@media screen and (min-width: 768px) {
+  .hide-screen {
+    display: none;
+  }
+  .fr-screen {
+    float: right;
+  }
+  .page-num {
+    margin-bottom: 50px;
+  }
+  .page-num .brief {
+    height: 30px;
+    float: left;
+  }
+  .page-num .brief > a {
+    float: left;
+    padding: 5px 10px;
+    text-align: center;
+    display: block;
+    line-height: 150%;
+    height: 30px;
+  }
+  .page-num .brief > a > * {
+    line-height: 30px;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 3px 5px;
+    margin: 0 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+  .page-num .page-nav {
+    display: block;
+    text-align: center;
+  }
+  .page-num .page-nav > a {
+    float: left;
+    padding: 5px 10px;
+    text-align: center;
+    display: block;
+    line-height: 150%;
+    height: 30px;
+  }
+  .page-num .page-nav > a > span,
+  .page-num .page-nav > a > input,
+  .page-num .page-nav > a > select {
+    line-height: 30px;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 3px 5px;
+    margin: 0 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+  .page-num .page-nav > a > input {
+    width: 50px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .hide-phone {
+    display: none;
+  }
+  .page-num {
+    margin-bottom: 50px;
+  }
+  .page-num .page-nav {
+    display: block;
+    width: 300px;
+    margin: 0 auto;
+  }
+  .page-num .page-nav > a {
+    float: left;
+    padding: 5px 10px;
+    text-align: center;
+    display: block;
+    line-height: 150%;
+    height: 30px;
+  }
+  .page-num .page-nav > a > span,
+  .page-num .page-nav > a > input,
+  .page-num .page-nav > a > select {
+    line-height: 30px;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 3px 5px;
+    margin: 0 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+  .page-num .page-nav > a > input {
+    width: 50px;
+  }
+}
+.bdshare-button-style0-16 {
+  margin-top: 21px;
+  margin-left: 10px;
+}
+.share-left {
+  float: left;
+  height: 70px;
+  overflow: hidden;
+}
