@@ -76,6 +76,7 @@
           <element id="library" level="project" name="Maven: com.loopj.android:android-async-http:1.4.9" />
           <element id="library" level="project" name="Maven: cz.msebera.android:httpclient:4.3.6" />
           <element id="library" level="project" name="Maven: com.qiniu:happy-dns:0.2.5" />
+          <element id="library" level="project" name="Maven: com.qiniu:qiniu-java-sdk:7.0.11" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="MovieManager/web/Web" />

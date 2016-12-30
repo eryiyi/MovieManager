@@ -5,9 +5,10 @@ package com.liangxunwang.unimanager.util;
  */
 public class Constants {
 //        public static final String URL = "http://120.27.41.21:7778/";
-        public static final String URL = "http://192.168.0.224:8080/";
+        public static final String URL = "http://192.168.0.225:8080/";
 
-        public static final String QINIU_URL = "http://7xrqlr.com1.z0.glb.clouddn.com/";
+//        public static final String QINIU_URL = "http://7xrqlr.com1.z0.glb.clouddn.com/";
+        public static final String QINIU_URL = "http://7xt74j.com1.z0.glb.clouddn.com/";
 
         public static final String QINIU_SPACE = "hmmm-pic";
         public static final String COVER_DEFAULT = "default_avatar.png";
